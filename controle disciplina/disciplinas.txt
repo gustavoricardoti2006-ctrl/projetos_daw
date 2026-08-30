@@ -1,0 +1,3 @@
+nome;sigla;carga
+matematica;MAT;30
+portugues;PT;30
