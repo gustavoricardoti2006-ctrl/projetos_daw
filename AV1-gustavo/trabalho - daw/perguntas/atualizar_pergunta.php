@@ -1,7 +1,6 @@
 <?php
 $id_antigo = $_POST['id_antigo'] ?? '';
 $id = $_POST['id'] ?? '';
-$tipo = $_POST['tipo'] ?? '';
 $pergunta = $_POST['pergunta'] ?? '';
 $resposta = $_POST['resposta'] ?? '';
 $a = $_POST['a'] ?? '';
@@ -15,13 +14,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $aux = fopen("auxiliar.txt", "w");
     fgets($file);
     while (!feof($file)) {
+        
         $linha = fgets($file);
+        
         if ($linha != false) {
             $dados = explode(";", $linha);
+            
             if ($id_antigo == $dados[0]) {
                 $recebe = $id . ";" . $tipo . ";" . $pergunta . ";" . $resposta . ";" . $a . ";" . $b . ";" . $c . ";" . $d . "\n";
                 fwrite($aux, $recebe);
-            } else fwrite($aux, $linha);
+                
+            } else {
+                fwrite($aux, $linha);
+            }
+            
         }
     }
     fclose($file);
