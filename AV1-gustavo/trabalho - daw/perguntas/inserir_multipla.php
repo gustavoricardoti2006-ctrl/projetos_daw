@@ -1,4 +1,5 @@
 <?php
+$id = $_POST['id'] ?? '';
 $pergunta = $_POST['pergunta'] ?? '';
 $a = $_POST['a'] ?? '';
 $b = $_POST['b'] ?? '';
@@ -15,14 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     $file = fopen("Perguntas.txt", "a");
-    $id = 1;
-    $leitura = fopen("Perguntas.txt", "r");
-    while (!feof($leitura)) {
-        $linha = fgets($leitura);
-        if ($linha != false) $id++;
-    }
-    
-    fclose($leitura);
+
     $linha = $id . ";multipla;" . $pergunta . ";" . $correta . ";" . $a . ";" . $b . ";" . $c . ";" . $d . "\n";
     fwrite($file, $linha);
     fclose($file);
@@ -40,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
     <form action="inserir_multipla.php" method="post">
+        Id: <input type="number" name="id"><br>
         Pergunta: <input type="text" name="pergunta"><br>
         Alternativa A: <input type="text" name="a"><br>
         Alternativa B: <input type="text" name="b"><br>
