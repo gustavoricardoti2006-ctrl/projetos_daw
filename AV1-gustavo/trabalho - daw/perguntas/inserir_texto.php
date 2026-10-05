@@ -1,4 +1,5 @@
 <?php
+$id = $_POST['id'] ?? '';
 $pergunta = $_POST['pergunta'] ?? '';
 $resposta = $_POST['resposta'] ?? '';
 $msg = "";
@@ -10,13 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         fclose($file);
     }
     $file = fopen("Perguntas.txt", "a");
-    $id = 1;
-    $leitura = fopen("Perguntas.txt", "r");
-    while (!feof($leitura)) {
-        $linha = fgets($leitura);
-        if ($linha != false) $id++;
-    }
-    fclose($leitura);
+    
     $linha = $id . ";texto;" . $pergunta . ";" . $resposta . "\n";
     fwrite($file, $linha);
     fclose($file);
@@ -34,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
     <form action="inserir_texto.php" method="post">
+        id:<input type="number" name="id"><br>
         Pergunta: <input type="text" name="pergunta"><br>
         Resposta: <input type="text" name="resposta"><br>
         <input type="submit" value="enviar">
