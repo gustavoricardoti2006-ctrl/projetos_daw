@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($linha != false) $id++;
     }
     fclose($leitura);
-    $linha = $id . ";texto;" . $pergunta . ";" . $resposta . ";;;;\n";
+    $linha = $id . ";texto;" . $pergunta . ";" . $resposta . "\n";
     fwrite($file, $linha);
     fclose($file);
     $msg = "pergunta incluida com sucesso";
