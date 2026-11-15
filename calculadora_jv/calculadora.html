@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CalculadoraJS</title>
+</head>
+<body>
+    <h2><center>Calculadora JS</center></h2>
+
+    <form id="formulario">
+        n1: <input type="number" id="n1"><br>
+        n2: <input type="number" id="n2"><br>
+        op: <select id="op">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+
+        <button type="button" onclick="enviarCalculo()">Calcular</button>
+    </form>
+    <h3 id="resultado"></h3>
+
+    <script>
+        function enviarCalculo() {
+            let n1 = document.getElementById("n1").value;
+            let n2 = document.getElementById("n2").value;
+            let op = document.getElementById("op").value;
+
+            let xhr = new XMLHttpRequest();
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    document.getElementById("resultado").innerText = "Resultado: " + xhr.responseText;
+                }
+            };
+
+            let url = "calculo.php?n1=" + n1 + "&n2=" + n2 + "&op=" + encodeURIComponent(op);
+            xhr.open("GET", url, true);
+            xhr.send();
+        }
+    </script>
+</body>
+</html>
