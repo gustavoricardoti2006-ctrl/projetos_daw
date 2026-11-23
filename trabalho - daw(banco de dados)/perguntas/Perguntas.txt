@@ -1,0 +1,2 @@
+id;tipo;pergunta;resposta;a;b;c;d;
+2;multipla;quanto é 1 + 1;B;2;1;1;1
